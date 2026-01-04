@@ -24,6 +24,26 @@ npx prisma studio    # Open database GUI
 # Docker (PostgreSQL)
 docker start launchpad-db   # Start database
 docker stop launchpad-db    # Stop database
+
+# User management
+npx tsx scripts/create-user.ts  # Create/update test user
+```
+
+## Docker Setup
+
+PostgreSQL runs in Docker. The container is configured to auto-restart:
+
+```bash
+# Initial setup (already done)
+docker run -d --name launchpad-db \
+  -e POSTGRES_USER=postgres \
+  -e POSTGRES_PASSWORD=postgres \
+  -e POSTGRES_DB=launchpad \
+  -p 5432:5432 \
+  --restart unless-stopped \
+  postgres:16-alpine
+
+# After reboot, Docker Desktop auto-starts and container restarts automatically
 ```
 
 ## Project Structure
